@@ -1,5 +1,5 @@
 = Test adoc to html
 
-* link:/wheelcraft[Wheel Craft]
+* link:wheelcraft[Wheel Craft]
 
 Take care.
