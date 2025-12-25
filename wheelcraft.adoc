@@ -1,0 +1,29 @@
+= Wheel Craft
+
+. Remove old .venv and create a new one for your Python version.
+. Install needed packages.
++
+[,shell]
+----
+pip install <packages> ...
+----
+. Write installed packages and their dependencies to `requirements.txt`.
++
+[,shell]
+----
+pip freeze > requirements.txt
+----
+. Download packages.  Note that `pip donwload` may download `tar.gz` files without dependencies for building,
+while `pip wheel` won't.
++
+[,shell]
+----
+pip wheel -r requirements.txt    
+----
+. Move all whl files to the offline system.
+. Install packages on the offline system.
++
+[,shell]
+----
+pip install -r requirements.txt --no-index --find-link .
+----
