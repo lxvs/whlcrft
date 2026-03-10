@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set -o nounset
+set -o errexit
+
+show_help ()
+{
+cat <<EOF
+usage: ${0##*/} [PY_VERSION]
+EOF
+}
+
+main ()
+{
+    local v=
+    for x in "$@"; do
+        case $x in
+            -h|--help|-\?)
+                show_help
+                return
+                ;;
+            *)
+                v=-V:$x
+                ;;
+        esac
+    done
+
+    py $v -V
+    git clean -fdx 1>/dev/null
+    py $v -m venv .venv
+    . .venv/Scripts/activate
+}
+
+main "$@"
