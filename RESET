@@ -25,10 +25,10 @@ main ()
         esac
     done
 
-    py $v -V
-    git clean -fdx 1>/dev/null
+    py $v -V >&2
+    git clean -fdx -- *.whl 1>/dev/null
     py $v -m venv .venv
-    . .venv/Scripts/activate
+    printf "%s\n" '. .venv/Scripts/activate'
 }
 
 main "$@"
