@@ -25,9 +25,10 @@ main ()
         esac
     done
 
-    py $v -V >&2
-    git clean -fdx -- *.whl 1>/dev/null
+    test "${VIRTUAL_ENV-}" && deactivate.bat
+    git clean -fdx -- .venv *.whl 1>/dev/null
     py $v -m venv .venv
+    py $v -V >&2
     printf "%s\n" '. .venv/Scripts/activate'
 }
 
