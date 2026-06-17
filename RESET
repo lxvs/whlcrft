@@ -6,7 +6,7 @@ set -o errexit
 show_help ()
 {
 cat <<EOF
-usage: ${0##*/} [PY_VERSION]
+usage: \$($0 [PY_VERSION])
 EOF
 }
 
