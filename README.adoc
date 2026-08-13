@@ -1,5 +1,98 @@
-= Test adoc to html
+:toc: macro
+:icons: font
 
-* link:wheelcraft[Wheel Craft]
+ifdef::env-github,env-browser[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
-Take care.
+= Wheel Craft
+
+This script needs https://apps.microsoft.com/detail/9nq7512cxl7t[Python Install Manager^] installed on Windows.
+
+toc::[]
+
+== Download a Package along with its Dependencies
+
+. Setup a new venv:
++
+[,shell]
+----
+$(RESET) && . .venv/Scripts/activate
+----
++
+Or, with a specific version:
++
+[,shell]
+----
+$(RESET 3.13) && . .venv/Scripts/activate
+----
+
+. Install needed packages:
++
+[,shell]
+----
+pip install <packages> ...
+----
+
+. Write installed packages and their dependencies to `requirements.txt`.
++
+[,shell]
+----
+pip freeze > requirements.txt
+----
+
+. Download packages.
++
+[,shell]
+----
+pip wheel -r requirements.txt    
+----
++
+TIP: `pip donwload` may download `tar.gz` files without dependencies for building, while `pip wheel` won't.
+
+. Move all whl files to the offline system.
+
+. Install packages on the offline system.
++
+[,shell]
+----
+pip install -r requirements.txt --no-index --find-link .
+----
+
+== Download Packages from a Requirements.txt
+
+. Setup a new venv:
++
+[,shell]
+----
+$(RESET) && . .venv/Scripts/activate
+----
++
+Or, with a specific version:
++
+[,shell]
+----
+$(RESET 3.13) && . .venv/Scripts/activate
+----
+
+. Download packages.
++
+[,shell]
+----
+pip wheel -r requirements.txt    
+----
++
+TIP: `pip donwload` may download `tar.gz` files without dependencies for building, while `pip wheel` won't.
+
+. Move all whl files to the offline system.
+
+. Install packages on the offline system.
++
+[,shell]
+----
+pip install -r requirements.txt --no-index --find-link .
+----
